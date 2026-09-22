@@ -1,12 +1,47 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ahalya Mohan | Azure Data Engineer</title>
+    <title>Ahalya Mohan | Data Engineer</title>
 
     <style>
+
+        /* =========================
+           THEME VARIABLES
+        ========================= */
+
+        :root {
+            --bg: #0f172a;
+            --bg-secondary: #111827;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --border: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc;
+            --bg-secondary: #ffffff;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #334155;
+            --muted: #64748b;
+            --accent: #0284c7;
+            --border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+
+        /* =========================
+           RESET
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -16,54 +51,110 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #0f172a;
-            color: #f8fafc;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+
+            transition:
+                background 0.4s ease,
+                color 0.4s ease;
         }
 
-        /* NAVIGATION */
+
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+
+            background: var(--nav-bg);
+
             padding: 18px 8%;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             z-index: 1000;
-            border-bottom: 1px solid #1e293b;
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(10px);
+
+            transition:
+                background 0.4s ease,
+                border-color 0.4s ease;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #38bdf8;
+            color: var(--accent);
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 30px;
+            align-items: center;
         }
 
         nav ul li a {
             text-decoration: none;
-            color: #e2e8f0;
+            color: var(--text);
             font-size: 15px;
             transition: 0.3s;
         }
 
         nav ul li a:hover {
-            color: #38bdf8;
+            color: var(--accent);
         }
 
-        /* GENERAL */
+
+        /* =========================
+           THEME BUTTON
+        ========================= */
+
+        #theme-toggle {
+            border: none;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: var(--card);
+            color: var(--text);
+
+            font-size: 19px;
+
+            cursor: pointer;
+
+            border: 1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+        #theme-toggle:hover {
+            transform: rotate(20deg);
+            color: var(--accent);
+        }
+
+
+        /* =========================
+           GENERAL
+        ========================= */
 
         section {
             padding: 100px 8%;
             min-height: 100vh;
+
+            transition:
+                background 0.4s ease,
+                color 0.4s ease;
         }
 
         .section-title {
@@ -73,17 +164,35 @@
         }
 
         .section-title span {
-            color: #38bdf8;
+            color: var(--accent);
         }
 
-        /* HOME */
+
+        /* =========================
+           HOME
+        ========================= */
 
         #home {
             display: flex;
             justify-content: center;
             align-items: center;
+
             text-align: center;
+
             min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(56, 189, 248, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(99, 102, 241, 0.10),
+                    transparent 30%
+                ),
+                var(--bg);
         }
 
         .home-content {
@@ -91,7 +200,7 @@
         }
 
         .home-content p:first-child {
-            color: #38bdf8;
+            color: var(--accent);
             font-size: 20px;
             margin-bottom: 10px;
         }
@@ -103,20 +212,25 @@
 
         .home-content h2 {
             font-size: 30px;
-            color: #cbd5e1;
+            color: var(--text-secondary);
             margin-bottom: 25px;
         }
 
         .home-content h2 span {
-            color: #38bdf8;
+            color: var(--accent);
         }
 
         .home-content .intro {
-            color: #94a3b8;
+            color: var(--muted);
             max-width: 650px;
             margin: auto;
             font-size: 17px;
         }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .buttons {
             margin-top: 30px;
@@ -124,33 +238,48 @@
 
         .btn {
             display: inline-block;
+
             padding: 12px 25px;
             margin: 8px;
+
             border-radius: 6px;
+
             text-decoration: none;
+
             font-weight: bold;
+
             transition: 0.3s;
         }
 
         .primary {
-            background: #38bdf8;
-            color: #0f172a;
+            background: var(--accent);
+            color: white;
         }
 
         .secondary {
-            border: 1px solid #38bdf8;
-            color: #38bdf8;
+            border: 1px solid var(--accent);
+            color: var(--accent);
         }
 
         .btn:hover {
             transform: translateY(-3px);
         }
 
-        /* ABOUT */
 
-        #about {
-            background: #111827;
+        /* =========================
+           ALTERNATE SECTIONS
+        ========================= */
+
+        #about,
+        #projects,
+        #contact {
+            background: var(--bg-secondary);
         }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
 
         .about-container {
             max-width: 950px;
@@ -159,109 +288,149 @@
         }
 
         .about-container p {
-            color: #cbd5e1;
+            color: var(--text-secondary);
             font-size: 17px;
             margin-bottom: 20px;
         }
 
-        /* SKILLS */
+
+        /* =========================
+           SKILLS
+        ========================= */
 
         .skills-container {
             max-width: 1000px;
             margin: auto;
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
             gap: 20px;
         }
 
         .skill-card {
-            background: #1e293b;
+            background: var(--card);
+
             padding: 25px;
+
             border-radius: 10px;
-            border: 1px solid #334155;
+
+            border: 1px solid var(--border);
+
+            transition:
+                0.3s,
+                background 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
 
         .skill-card h3 {
-            color: #38bdf8;
+            color: var(--accent);
             margin-bottom: 15px;
         }
 
         .skill-card p {
-            color: #cbd5e1;
+            color: var(--text-secondary);
         }
 
-        /* PROJECTS */
 
-        #projects {
-            background: #111827;
-        }
+        /* =========================
+           PROJECTS
+        ========================= */
 
         .projects-container {
             max-width: 1100px;
             margin: auto;
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
             gap: 25px;
         }
 
         .project-card {
-            background: #1e293b;
+            background: var(--card);
+
             border-radius: 10px;
+
             padding: 25px;
-            border: 1px solid #334155;
-            transition: 0.3s;
+
+            border: 1px solid var(--border);
+
+            transition:
+                0.3s,
+                background 0.4s ease;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: #38bdf8;
+            border-color: var(--accent);
         }
 
         .project-card h3 {
-            color: #38bdf8;
+            color: var(--accent);
             margin-bottom: 15px;
         }
 
         .project-card p {
-            color: #cbd5e1;
+            color: var(--text-secondary);
             margin-bottom: 15px;
         }
 
         .tech {
-            color: #94a3b8;
+            color: var(--muted);
             font-size: 14px;
         }
 
-        /* CERTIFICATIONS */
+
+        /* =========================
+           CERTIFICATIONS
+        ========================= */
 
         .cert-container {
             max-width: 900px;
             margin: auto;
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
             gap: 20px;
         }
 
         .cert-card {
-            background: #1e293b;
+            background: var(--card);
+
             padding: 25px;
+
             border-radius: 10px;
-            border: 1px solid #334155;
+
+            border: 1px solid var(--border);
         }
 
         .cert-card h3 {
-            color: #38bdf8;
+            color: var(--accent);
             margin-bottom: 10px;
         }
 
         .cert-card p {
-            color: #cbd5e1;
+            color: var(--text-secondary);
         }
 
-        /* CONTACT */
+
+        /* =========================
+           CONTACT
+        ========================= */
 
         #contact {
-            background: #111827;
             text-align: center;
         }
 
@@ -271,27 +440,41 @@
         }
 
         .contact-container p {
-            color: #cbd5e1;
+            color: var(--text-secondary);
             margin-bottom: 20px;
         }
 
         .contact-links a {
             display: inline-block;
+
             margin: 10px;
-            color: #38bdf8;
+
+            color: var(--accent);
+
             text-decoration: none;
         }
 
-        /* FOOTER */
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
+
             padding: 25px;
-            background: #020617;
-            color: #94a3b8;
+
+            background: var(--bg);
+
+            color: var(--muted);
+
+            border-top: 1px solid var(--border);
         }
 
-        /* MOBILE */
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 700px) {
 
@@ -322,29 +505,70 @@
             .section-title {
                 font-size: 30px;
             }
+
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- NAVIGATION -->
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
     <nav>
-        <div class="logo">Ahalya Mohan</div>
+
+        <div class="logo">
+            Ahalya.
+        </div>
 
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="#certifications">Certifications</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+            <li>
+
+                <button
+                    id="theme-toggle"
+                    aria-label="Toggle dark and light mode">
+                    ☀️
+                </button>
+
+            </li>
+
         </ul>
+
     </nav>
 
 
-    <!-- HOME -->
+    <!-- =========================
+         HOME
+    ========================= -->
 
     <section id="home">
 
@@ -382,7 +606,9 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- =========================
+         ABOUT
+    ========================= -->
 
     <section id="about">
 
@@ -418,7 +644,9 @@
     </section>
 
 
-    <!-- SKILLS -->
+    <!-- =========================
+         SKILLS
+    ========================= -->
 
     <section id="skills">
 
@@ -429,60 +657,83 @@
         <div class="skills-container">
 
             <div class="skill-card">
+
                 <h3>Azure</h3>
+
                 <p>
                     Azure Data Factory<br>
                     ADLS Gen2<br>
                     Azure Databricks
                 </p>
+
             </div>
 
+
             <div class="skill-card">
+
                 <h3>Data Engineering</h3>
+
                 <p>
                     ETL / ELT<br>
                     Medallion Architecture<br>
                     Delta Lake<br>
                     Data Pipelines
                 </p>
+
             </div>
 
+
             <div class="skill-card">
+
                 <h3>Programming</h3>
+
                 <p>
                     SQL<br>
                     Python<br>
                     PySpark
                 </p>
+
             </div>
 
+
             <div class="skill-card">
+
                 <h3>Analytics & BI</h3>
+
                 <p>
                     Microsoft Fabric<br>
                     Power BI<br>
                     Tableau
                 </p>
+
             </div>
 
+
             <div class="skill-card">
+
                 <h3>Tools</h3>
+
                 <p>
                     Git & GitHub<br>
                     Jira<br>
                     Confluence<br>
                     Unix / Linux
                 </p>
+
             </div>
 
+
             <div class="skill-card">
+
                 <h3>Production Support</h3>
+
                 <p>
                     ITIL<br>
                     Incident Management<br>
                     Autosys<br>
                     Application Support
                 </p>
+
             </div>
 
         </div>
@@ -490,7 +741,9 @@
     </section>
 
 
-    <!-- PROJECTS -->
+    <!-- =========================
+         PROJECTS
+    ========================= -->
 
     <section id="projects">
 
@@ -502,12 +755,13 @@
 
             <div class="project-card">
 
-                <h3>Azure Data Engineering Pipeline</h3>
+                <h3>
+                    Azure Data Engineering Pipeline
+                </h3>
 
                 <p>
                     End-to-end data pipeline using Azure Data Factory,
-                    ADLS Gen2 and Databricks to ingest, transform and
-                    process data using a Medallion architecture.
+                    ADLS Gen2 and Databricks.
                 </p>
 
                 <p class="tech">
@@ -519,12 +773,13 @@
 
             <div class="project-card">
 
-                <h3>Sales Analytics Platform</h3>
+                <h3>
+                    Sales Analytics Platform
+                </h3>
 
                 <p>
-                    Built a data pipeline and analytical model to
-                    transform sales data into curated datasets for
-                    business reporting and analysis.
+                    Data pipeline and analytical model for transforming
+                    sales data into curated datasets.
                 </p>
 
                 <p class="tech">
@@ -536,12 +791,13 @@
 
             <div class="project-card">
 
-                <h3>Microsoft Fabric Data Project</h3>
+                <h3>
+                    Microsoft Fabric Data Project
+                </h3>
 
                 <p>
-                    Exploring modern data engineering capabilities
-                    using Microsoft Fabric, Lakehouse architecture
-                    and analytical workloads.
+                    Data engineering project exploring Microsoft Fabric,
+                    Lakehouse architecture and analytical workloads.
                 </p>
 
                 <p class="tech">
@@ -555,7 +811,9 @@
     </section>
 
 
-    <!-- CERTIFICATIONS -->
+    <!-- =========================
+         CERTIFICATIONS
+    ========================= -->
 
     <section id="certifications">
 
@@ -567,7 +825,10 @@
 
             <div class="cert-card">
 
-                <h3>Microsoft Certified: Fabric Data Engineer Associate</h3>
+                <h3>
+                    Microsoft Certified:
+                    Fabric Data Engineer Associate
+                </h3>
 
                 <p>
                     Microsoft Certified Professional
@@ -578,7 +839,9 @@
 
             <div class="cert-card">
 
-                <h3>Microsoft Azure Data Fundamentals</h3>
+                <h3>
+                    Microsoft Azure Data Fundamentals
+                </h3>
 
                 <p>
                     DP-900 — Azure Data Fundamentals
@@ -591,7 +854,9 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =========================
+         CONTACT
+    ========================= -->
 
     <section id="contact">
 
@@ -608,13 +873,15 @@
 
             <div class="contact-links">
 
-                <a href="https://github.com/Ahalya97"
-                   target="_blank">
+                <a
+                    href="https://github.com/Ahalya97"
+                    target="_blank">
                     GitHub
                 </a>
 
-                <a href="https://www.linkedin.com/"
-                   target="_blank">
+                <a
+                    href="https://www.linkedin.com/"
+                    target="_blank">
                     LinkedIn
                 </a>
 
@@ -629,7 +896,9 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
     <footer>
 
@@ -639,5 +908,66 @@
 
     </footer>
 
+
+    <!-- =========================
+         DARK / LIGHT MODE SCRIPT
+    ========================= -->
+
+    <script>
+
+        const themeToggle =
+            document.getElementById("theme-toggle");
+
+        const body =
+            document.body;
+
+
+        /* Load saved theme */
+
+        const savedTheme =
+            localStorage.getItem("theme");
+
+
+        if (savedTheme === "light") {
+
+            body.classList.add("light-mode");
+
+            themeToggle.textContent = "🌙";
+
+        }
+
+
+        /* Toggle theme */
+
+        themeToggle.addEventListener("click", function () {
+
+            body.classList.toggle("light-mode");
+
+
+            if (body.classList.contains("light-mode")) {
+
+                themeToggle.textContent = "🌙";
+
+                localStorage.setItem(
+                    "theme",
+                    "light"
+                );
+
+            } else {
+
+                themeToggle.textContent = "☀️";
+
+                localStorage.setItem(
+                    "theme",
+                    "dark"
+                );
+
+            }
+
+        });
+
+    </script>
+
 </body>
 </html>
+```
